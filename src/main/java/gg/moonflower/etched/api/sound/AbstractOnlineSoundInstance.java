@@ -75,10 +75,11 @@ public class AbstractOnlineSoundInstance extends AbstractSoundInstance {
         return this;
     }
 
-    @Override
-    public CompletableFuture<AudioStream> getStream(SoundBufferLibrary loader, Sound sound, boolean repeatInstantly) {
+
+    public CompletableFuture<AudioStream> getAudioStream(SoundBufferLibrary loader, ResourceLocation id, boolean repeatInstantly) {
+        Sound sound = this.getSound();
         if (!(sound instanceof OnlineSound onlineSound)) {
-            return super.getStream(loader, sound, repeatInstantly);
+            return super.getAudioStream(loader, id, repeatInstantly);
         }
 
         if (TrackData.isLocalSound(onlineSound.getURL())) {

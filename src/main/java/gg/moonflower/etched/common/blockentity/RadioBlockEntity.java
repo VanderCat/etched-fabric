@@ -29,7 +29,7 @@ public class RadioBlockEntity extends BlockEntity implements Clearable {
     private boolean loaded;
 
     public RadioBlockEntity(BlockPos pos, BlockState state) {
-        super(EtchedBlocks.RADIO_BE.get(), pos, state);
+        super(EtchedBlocks.RADIO_BE, pos, state);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, RadioBlockEntity blockEntity) {

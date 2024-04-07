@@ -78,7 +78,7 @@ public class BoomboxItem extends Item implements ContainerItem {
         }
     }
 
-    @Override
+
     public boolean onEntityItemUpdate(ItemStack stack, ItemEntity entity) {
         if (!entity.level().isClientSide()) {
             return false;

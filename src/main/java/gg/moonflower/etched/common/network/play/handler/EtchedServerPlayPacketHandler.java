@@ -47,7 +47,7 @@ public class EtchedServerPlayPacketHandler {
         }
 
         ItemStack labelStack = player.getInventory().getItem(slot);
-        if (!labelStack.is(EtchedItems.MUSIC_LABEL.get())) {
+        if (!labelStack.is(EtchedItems.MUSIC_LABEL)) {
             return;
         }
 

@@ -42,7 +42,7 @@ public class AlbumJukeboxBlockEntity extends RandomizableContainerBlockEntity im
     private boolean loaded;
 
     public AlbumJukeboxBlockEntity(BlockPos pos, BlockState state) {
-        super(EtchedBlocks.ALBUM_JUKEBOX_BE.get(), pos, state);
+        super(EtchedBlocks.ALBUM_JUKEBOX_BE, pos, state);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         this.playingIndex = -1;
         this.track = 0;

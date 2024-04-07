@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "quilt_loader": {
+    "id": "${mod_id}",
+    "version": "${mod_version}",
+    "name": "${mod_name}",
+    "description": "${mod_description}",
+    "icon": "${mod_id}.icon.png",
+    "authors": [ "Moonflower", "VanderCat" ],
+    "contributors": [ "Ocelot", "Jackson", "Farcr (Art)", "Echolite (Art)", "AstraZoey (Sound Design)" ],
+    "license": "GPLv3",
+    "environment": "*",
+    "entrypoints": {
+      "main": [
+        "gg.moonflower.etched.core.fabric.EtchedFabric"
+      ],
+      "client": [
+        "gg.moonflower.etched.core.fabric.EtchedFabricClient"
+      ]
+    }
+  },
+  "mixins": [
+    "${mod_id}.mixins.json",
+    "fabric.mixins.json"
+  ],
+  "depends": {
+    "quilt": "*",
+    "minecraft": "~${minecraft_version}",
+    "pollen": "2.x"
+  }
+}

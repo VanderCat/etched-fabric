@@ -27,8 +27,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.network.PacketDistributor;
-
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.Proxy;
@@ -103,7 +101,7 @@ public class EtchingMenu extends AbstractContainerMenu {
         this.discSlot = this.addSlot(new Slot(this.input, 0, 44, 43) {
             @Override
             public boolean mayPlace(ItemStack stack) {
-                return stack.getItem() == EtchedItems.BLANK_MUSIC_DISC.get() || stack.getItem() == EtchedItems.ETCHED_MUSIC_DISC.get();
+                return stack.getItem() == EtchedItems.BLANK_MUSIC_DISC || stack.getItem() == EtchedItems.ETCHED_MUSIC_DISC);
             }
 
             @Override
@@ -143,7 +141,7 @@ public class EtchingMenu extends AbstractContainerMenu {
                 containerLevelAccess.execute((level, pos) -> {
                     long l = level.getGameTime();
                     if (EtchingMenu.this.lastSoundTime != l) {
-                        level.playSound(null, pos, EtchedSounds.UI_ETCHER_TAKE_RESULT.get(), SoundSource.BLOCKS, 1.0F, 1.0F);
+                        level.playSound(null, pos, EtchedSounds.UI_ETCHER_TAKE_RESULT, SoundSource.BLOCKS, 1.0F, 1.0F);
                         EtchingMenu.this.lastSoundTime = l;
                     }
 
@@ -195,7 +193,7 @@ public class EtchingMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player player) {
-        return stillValid(this.access, player, EtchedBlocks.ETCHING_TABLE.get());
+        return stillValid(this.access, player, EtchedBlocks.ETCHING_TABLE);
     }
 
     @Override
@@ -247,7 +245,7 @@ public class EtchingMenu extends AbstractContainerMenu {
         ItemStack resultStack = this.resultSlot.getItem();
 
         if (resultStack.isEmpty() && labelStack.isEmpty()) {
-            if (!discStack.isEmpty() && discStack.getItem() == EtchedItems.ETCHED_MUSIC_DISC.get()) {
+            if (!discStack.isEmpty() && discStack.getItem() == EtchedItems.ETCHED_MUSIC_DISC) {
                 this.labelIndex.set(EtchedMusicDiscItem.getPattern(discStack).ordinal());
             } else {
                 this.labelIndex.set(0);

@@ -73,7 +73,7 @@ public class Etched {
         MinecraftForge.EVENT_BUS.addListener(Etched::onItemChangedDimension);
     }
 
-    private static void init(FMLCommonSetupEvent event) {
+    private static void init() {
         EtchedMessages.init();
 
         SoundSourceManager.registerSource(new SoundCloudSource());
@@ -82,7 +82,7 @@ public class Etched {
 
     private static void clientInit(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
-            ItemProperties.register(EtchedItems.BOOMBOX.get(), new ResourceLocation(Etched.MOD_ID, "playing"), (stack, level, entity, i) -> {
+            ItemProperties.register(EtchedItems.BOOMBOX, new ResourceLocation(Etched.MOD_ID, "playing"), (stack, level, entity, i) -> {
                 if (!(entity instanceof Player)) {
                     return 0;
                 }
@@ -126,11 +126,11 @@ public class Etched {
         if (event.getEntity() instanceof ItemEntity entity) {
             if (event.getDimension() == Level.NETHER) {
                 ItemStack oldStack = entity.getItem();
-                if (oldStack.getItem() != EtchedBlocks.RADIO.get().asItem()) {
+                if (oldStack.getItem() != EtchedBlocks.RADIO.asItem()) {
                     return;
                 }
 
-                ItemStack newStack = new ItemStack(EtchedBlocks.PORTAL_RADIO_ITEM.get(), oldStack.getCount());
+                ItemStack newStack = new ItemStack(EtchedBlocks.PORTAL_RADIO_ITEM, oldStack.getCount());
                 newStack.setTag(oldStack.getTag());
                 entity.setItem(newStack);
             }

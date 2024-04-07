@@ -15,9 +15,8 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 
 import java.util.List;
 
@@ -59,7 +58,7 @@ public class SimpleMusicLabelItem extends Item {
         tag.putString("Title", title);
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @ClientOnly
     private void openMusicLabelEditScreen(Player player, InteractionHand hand, ItemStack stack) {
         Minecraft.getInstance().setScreen(new EditMusicLabelScreen(player, hand, stack));
     }

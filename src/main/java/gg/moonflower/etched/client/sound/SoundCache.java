@@ -6,10 +6,9 @@ import gg.moonflower.etched.api.sound.download.SoundSourceManager;
 import gg.moonflower.etched.api.sound.source.AudioSource;
 import gg.moonflower.etched.api.util.DownloadProgressListener;
 import gg.moonflower.etched.core.Etched;
+import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
-import net.minecraftforge.common.MinecraftForge;
-import net.minecraftforge.event.TickEvent;
 import org.apache.commons.codec.digest.DigestUtils;
 import org.apache.commons.io.IOUtils;
 import org.apache.logging.log4j.LogManager;
@@ -86,7 +85,7 @@ public final class SoundCache {
                 LOGGER.error("Failed to load cache metadata", e);
             }
         }
-        MinecraftForge.EVENT_BUS.<TickEvent.ClientTickEvent>addListener(event -> {
+        ClientTickEvents.END_CLIENT_TICK.register(client -> {
             if (nextWriteTime == Long.MAX_VALUE) {
                 return;
             }

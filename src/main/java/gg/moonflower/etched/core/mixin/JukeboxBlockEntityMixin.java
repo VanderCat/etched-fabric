@@ -66,7 +66,7 @@ public abstract class JukeboxBlockEntityMixin extends BlockEntity implements Con
 
     @Inject(method = "setItem", at = @At("HEAD"), cancellable = true)
     public void setItem(int slot, ItemStack stack, CallbackInfo ci) {
-        if (stack.is(EtchedItems.ALBUM_COVER.get()) && this.level != null) {
+        if (stack.is(EtchedItems.ALBUM_COVER) && this.level != null) {
             this.items.set(slot, stack);
             this.setHasRecordBlockState(null, true);
             this.startPlaying();

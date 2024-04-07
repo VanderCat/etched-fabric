@@ -47,7 +47,7 @@ public class ItemRendererMixin {
 
     @ModifyVariable(method = "render", ordinal = 0, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/item/ItemStack;is(Lnet/minecraft/world/item/Item;)Z", ordinal = 0, shift = At.Shift.BEFORE), argsOnly = true)
     public BakedModel render(BakedModel original) {
-        if (this.etched$capturedHandItem == EtchedItems.BOOMBOX.get()) {
+        if (this.etched$capturedHandItem == EtchedItems.BOOMBOX) {
             return this.itemModelShaper.getItemModel(this.etched$capturedItem);
         }
         return original;
@@ -60,7 +60,7 @@ public class ItemRendererMixin {
 
     @ModifyVariable(method = "getModel", ordinal = 0, at = @At(value = "INVOKE_ASSIGN", target = "Lnet/minecraft/client/renderer/ItemModelShaper;getItemModel(Lnet/minecraft/world/item/ItemStack;)Lnet/minecraft/client/resources/model/BakedModel;", shift = At.Shift.AFTER))
     public BakedModel getModel(BakedModel original) {
-        if (this.etched$capturedHandItem == EtchedItems.BOOMBOX.get()) {
+        if (this.etched$capturedHandItem == EtchedItems.BOOMBOX) {
             return this.itemModelShaper.getModelManager().getModel(etched$BOOMBOX_IN_HAND_MODEL);
         }
         return original;

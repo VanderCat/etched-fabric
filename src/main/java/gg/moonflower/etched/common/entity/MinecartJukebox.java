@@ -48,7 +48,7 @@ public class MinecartJukebox extends AbstractMinecart implements WorldlyContaine
     }
 
     public MinecartJukebox(Level level, double d, double e, double f) {
-        super(EtchedEntities.JUKEBOX_MINECART.get(), level, d, e, f);
+        super(EtchedEntities.JUKEBOX_MINECART, level, d, e, f);
         this.record = ItemStack.EMPTY;
     }
 

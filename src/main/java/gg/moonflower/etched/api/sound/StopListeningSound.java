@@ -119,9 +119,8 @@ public class StopListeningSound implements SoundInstance, SoundStopListener, Wra
         return this.source.canPlaySound();
     }
 
-    @Override
-    public CompletableFuture<AudioStream> getStream(SoundBufferLibrary soundBuffers, Sound sound, boolean looping) {
-        return this.source.getStream(soundBuffers, sound, looping);
+    public CompletableFuture<AudioStream> getAudioStream(SoundBufferLibrary soundBuffers, ResourceLocation id, boolean looping) {
+        return this.source.getAudioStream(soundBuffers, id, looping);
     }
 
     @Override

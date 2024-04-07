@@ -8,6 +8,7 @@ import gg.moonflower.etched.client.render.item.AlbumCoverItemRenderer;
 import gg.moonflower.etched.client.sound.EntityRecordSoundInstance;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.SoundInstance;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
@@ -19,6 +20,7 @@ import net.minecraft.world.item.RecordItem;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Shadow;
 import org.spongepowered.asm.mixin.Unique;
@@ -54,7 +56,7 @@ public abstract class RecordItemMixin extends Item implements PlayableRecord {
         return true;
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @ClientOnly
     @Override
     public Optional<? extends SoundInstance> createEntitySound(ItemStack stack, Entity entity, int track, int attenuationDistance) {
         if (track != 0 || !(stack.getItem() instanceof RecordItem record)) {
@@ -67,7 +69,7 @@ public abstract class RecordItemMixin extends Item implements PlayableRecord {
         return Optional.of(new EntityRecordSoundInstance(record.getSound(), entity));
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @ClientOnly
     @Override
     public CompletableFuture<AlbumCover> getAlbumCover(ItemStack stack, Proxy proxy, ResourceManager resourceManager) {
         ResourceLocation key = ForgeRegistries.ITEMS.getKey(this);

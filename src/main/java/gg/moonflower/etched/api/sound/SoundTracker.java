@@ -34,9 +34,8 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
-import net.minecraftforge.client.event.ClientPlayerNetworkEvent;
-import net.minecraftforge.common.MinecraftForge;
 import org.jetbrains.annotations.Nullable;
+import org.quiltmc.qsl.networking.api.client.ClientPlayConnectionEvents;
 
 import java.util.*;
 import java.util.function.DoubleSupplier;
@@ -54,8 +53,8 @@ public class SoundTracker {
     private static final Component RADIO = Component.translatable("sound_source." + Etched.MOD_ID + ".radio");
 
     static {
-        MinecraftForge.EVENT_BUS.<ClientPlayerNetworkEvent.LoggingOut>addListener(event -> FAILED_URLS.clear());
-//        ClientPlayerNetworkEvent.LoggingOut.DISCONNECT.register((multiPlayerGameMode, localPlayer, connection) -> FAILED_URLS.clear());
+        //MinecraftForge.EVENT_BUS.<ClientPlayerNetworkEvent.LoggingOut>addListener(event -> FAILED_URLS.clear());
+        ClientPlayConnectionEvents.DISCONNECT.register((handler, client) ->  FAILED_URLS.clear());
     }
 
     private static synchronized void setRecordPlayingNearby(Level level, BlockPos pos, boolean playing) {

@@ -7,7 +7,7 @@
   ],
   "key": {
     "R": {
-      "tag": "forge:dusts/redstone"
+      "tag": "c:redstone_dusts"
     },
     "H": {
       "item": "minecraft:repeater"
@@ -16,7 +16,7 @@
       "item": "minecraft:jukebox"
     },
     "C": {
-      "tag": "forge:chests/wooden"
+      "tag": "c:wooden_chests"
     }
   },
   "result": {

@@ -37,7 +37,7 @@ public class RadioMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player player) {
-        return stillValid(this.access, player, EtchedBlocks.RADIO.get());
+        return stillValid(this.access, player, EtchedBlocks.RADIO);
     }
 
     /**

@@ -28,9 +28,8 @@ import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.Nullable;
+import org.quiltmc.loader.api.minecraft.ClientOnly;
 
 import java.util.Map;
 
@@ -128,7 +127,7 @@ public class AlbumJukeboxBlock extends BaseEntityBlock {
         builder.add(FACING, POWERED, HAS_RECORD);
     }
 
-    @OnlyIn(Dist.CLIENT)
+    @ClientOnly
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
         if (!Etched.CLIENT_CONFIG.showNotes.get() || !level.getBlockState(pos.above()).isAir()) {
@@ -153,6 +152,6 @@ public class AlbumJukeboxBlock extends BaseEntityBlock {
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, EtchedBlocks.ALBUM_JUKEBOX_BE.get(), AlbumJukeboxBlockEntity::tick);
+        return createTickerHelper(blockEntityType, EtchedBlocks.ALBUM_JUKEBOX_BE, AlbumJukeboxBlockEntity::tick);
     }
 }
