@@ -1,7 +1,9 @@
 package gg.moonflower.etched.common.network.play;
 
+import gg.moonflower.etched.common.network.EtchedMessages;
 import gg.moonflower.etched.common.network.play.handler.EtchedClientPlayPacketHandler;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
 import org.jetbrains.annotations.ApiStatus;
@@ -69,5 +71,9 @@ public class ClientboundPlayEntityMusicPacket implements EtchedPacket {
      */
     public enum Action {
         START, STOP, RESTART
+    }
+    @Override
+    public ResourceLocation getPacketId() {
+        return EtchedMessages.CLIENT_PLAY_ENTITY_MUSIC;
     }
 }

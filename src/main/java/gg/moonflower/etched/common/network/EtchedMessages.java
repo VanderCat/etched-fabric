@@ -7,6 +7,8 @@ import gg.moonflower.etched.core.Etched;
 import io.netty.handler.codec.EncoderException;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.jetbrains.annotations.Nullable;
 import org.quiltmc.qsl.networking.api.ServerPlayNetworking;
 import org.quiltmc.qsl.networking.api.client.ClientPlayNetworking;
@@ -17,6 +19,8 @@ import java.util.Optional;
 import java.util.function.Function;
 
 public class EtchedMessages {
+
+    public static final Logger LOGGER = LogManager.getLogger("Etched/Networking");
 
     public static final ResourceLocation CLIENT_INVALID_ETCH_URL = key("client_invalid_url");
     public static final ResourceLocation CLIENT_PLAY_ENTITY_MUSIC = key("client_play_entity_music");
@@ -58,8 +62,7 @@ public class EtchedMessages {
                 packetHandler.handle(clazz.getDeclaredConstructor(FriendlyByteBuf.class).newInstance(buf), client);
             } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
                     | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                LOGGER.error(e);
             }
         });
     }
@@ -69,8 +72,7 @@ public class EtchedMessages {
                 packetHandler.handle(clazz.getDeclaredConstructor(FriendlyByteBuf.class).newInstance(buf), server, player);
             } catch (InstantiationException | IllegalAccessException | IllegalArgumentException
                     | InvocationTargetException | NoSuchMethodException | SecurityException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
+                LOGGER.error(e);
             }
         });
     } 

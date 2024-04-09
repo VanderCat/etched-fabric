@@ -71,7 +71,8 @@ public class EtchingScreen extends AbstractContainerScreen<EtchingMenu> implemen
         this.url.setMaxLength(32500);
         this.url.setResponder(s -> {
             if (!Objects.equals(this.oldUrl, s) && this.urlTicks <= 0) {
-                //FIXME
+                var urlPacket = new ServerboundSetUrlPacket("");
+                urlPacket.sendToServer();
                 //EtchedMessages.PLAY.sendToServer(new ServerboundSetUrlPacket(""));
             }
             this.urlTicks = 8;
@@ -88,7 +89,8 @@ public class EtchingScreen extends AbstractContainerScreen<EtchingMenu> implemen
             this.urlTicks--;
             if (this.urlTicks <= 0 && !Objects.equals(this.oldUrl, this.url.getValue())) {
                 this.oldUrl = this.url.getValue();
-                //FIXME
+                var urlPacket = new ServerboundSetUrlPacket(this.url.getValue());
+                urlPacket.sendToServer();
                 //EtchedMessages.PLAY.sendToServer(new ServerboundSetUrlPacket(this.url.getValue()));
             }
         }
