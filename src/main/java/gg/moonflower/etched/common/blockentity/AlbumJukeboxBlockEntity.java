@@ -21,6 +21,8 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.entity.RandomizableContainerBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
@@ -41,12 +43,15 @@ public class AlbumJukeboxBlockEntity extends RandomizableContainerBlockEntity im
     private ItemStack playingStack;
     private boolean loaded;
 
-    public AlbumJukeboxBlockEntity(BlockPos pos, BlockState state) {
-        super(EtchedBlocks.ALBUM_JUKEBOX_BE, pos, state);
+    public AlbumJukeboxBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+        super(type, pos, state);
         this.items = NonNullList.withSize(this.getContainerSize(), ItemStack.EMPTY);
         this.playingIndex = -1;
         this.track = 0;
         this.playingStack = ItemStack.EMPTY;
+    }
+    public AlbumJukeboxBlockEntity(BlockPos pos, BlockState state) {
+        this(EtchedBlocks.ALBUM_JUKEBOX_BE.get(), pos, state);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, AlbumJukeboxBlockEntity entity) {

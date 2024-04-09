@@ -30,12 +30,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.structure.pools.StructurePoolElement;
 import net.minecraft.world.level.levelgen.structure.pools.StructureTemplatePool;
 import net.minecraft.world.level.levelgen.structure.templatesystem.StructureProcessorList;
-import net.minecraftforge.event.server.ServerAboutToStartEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.RegistryObject;
 import org.apache.commons.lang3.Validate;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -43,8 +37,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.*;
 import java.util.function.Function;
 import java.util.function.Supplier;
-
-@Mod.EventBusSubscriber(modid = Etched.MOD_ID)
+//TODO: FIX
+/*
 public class EtchedVillagers {
 
     public static final DeferredRegister<PoiType> POI_REGISTRY = DeferredRegister.create(ForgeRegistries.POI_TYPES, Etched.MOD_ID);
@@ -276,7 +270,7 @@ public class EtchedVillagers {
         public List<VillagerTrades.ItemListing> subList(int fromIndex, int toIndex) {
             return this.trades.subList(fromIndex, toIndex);
         }
-
+        */
         /**
          * Adds a simple trade for items or emeralds.
          *
@@ -287,9 +281,10 @@ public class EtchedVillagers {
          * @param xpGain         The amount of experience gained by this exchange
          * @param sellToVillager Whether the villager is buying or selling the item for emeralds
          */
+        /*
         public void add(ItemLike item, int emeralds, int itemCount, int maxUses, int xpGain, boolean sellToVillager) {
             this.add(new ItemTrade(() -> item, emeralds, itemCount, maxUses, xpGain, 0.05F, sellToVillager));
-        }
+        } */
 
         /**
          * Adds a simple trade for items or emeralds.
@@ -302,9 +297,10 @@ public class EtchedVillagers {
          * @param priceMultiplier The multiplier for how much the price deviates
          * @param sellToVillager  Whether the villager is buying or selling the item for emeralds
          */
+        /*
         public void add(ItemLike item, int emeralds, int itemCount, int maxUses, int xpGain, float priceMultiplier, boolean sellToVillager) {
             this.add(new ItemTrade(() -> item, emeralds, itemCount, maxUses, xpGain, priceMultiplier, sellToVillager));
-        }
+        } */
 
         /**
          * Adds a simple trade for items or emeralds.
@@ -316,9 +312,10 @@ public class EtchedVillagers {
          * @param xpGain         The amount of experience gained by this exchange
          * @param sellToVillager Whether the villager is buying or selling the item for emeralds
          */
-        public void add(Supplier<? extends ItemLike> item, int emeralds, int itemCount, int maxUses, int xpGain, boolean sellToVillager) {
+        /*        public void add(Supplier<? extends ItemLike> item, int emeralds, int itemCount, int maxUses, int xpGain, boolean sellToVillager) {
             this.add(new ItemTrade(item, emeralds, itemCount, maxUses, xpGain, 0.05F, sellToVillager));
-        }
+        } */
+
 
         /**
          * Adds a simple trade for items or emeralds.
@@ -331,9 +328,11 @@ public class EtchedVillagers {
          * @param priceMultiplier The multiplier for how much the price deviates
          * @param sellToVillager  Whether the villager is buying or selling the item for emeralds
          */
+        /*
         public void add(Supplier<? extends ItemLike> item, int emeralds, int itemCount, int maxUses, int xpGain, float priceMultiplier, boolean sellToVillager) {
             this.add(new ItemTrade(item, emeralds, itemCount, maxUses, xpGain, priceMultiplier, sellToVillager));
-        }
+        } */
+/*
     }
 
     private static class ItemTrade implements VillagerTrades.ItemListing {
@@ -365,3 +364,4 @@ public class EtchedVillagers {
         }
     }
 }
+ */

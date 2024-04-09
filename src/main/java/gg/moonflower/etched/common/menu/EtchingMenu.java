@@ -101,7 +101,7 @@ public class EtchingMenu extends AbstractContainerMenu {
         this.discSlot = this.addSlot(new Slot(this.input, 0, 44, 43) {
             @Override
             public boolean mayPlace(ItemStack stack) {
-                return stack.getItem() == EtchedItems.BLANK_MUSIC_DISC || stack.getItem() == EtchedItems.ETCHED_MUSIC_DISC);
+                return stack.getItem() == EtchedItems.BLANK_MUSIC_DISC.asItem() || stack.getItem() == EtchedItems.ETCHED_MUSIC_DISC.asItem();
             }
 
             @Override
@@ -193,7 +193,7 @@ public class EtchingMenu extends AbstractContainerMenu {
 
     @Override
     public boolean stillValid(Player player) {
-        return stillValid(this.access, player, EtchedBlocks.ETCHING_TABLE);
+        return stillValid(this.access, player, EtchedBlocks.ETCHING_TABLE.get());
     }
 
     @Override
@@ -245,7 +245,7 @@ public class EtchingMenu extends AbstractContainerMenu {
         ItemStack resultStack = this.resultSlot.getItem();
 
         if (resultStack.isEmpty() && labelStack.isEmpty()) {
-            if (!discStack.isEmpty() && discStack.getItem() == EtchedItems.ETCHED_MUSIC_DISC) {
+            if (!discStack.isEmpty() && discStack.getItem() == EtchedItems.ETCHED_MUSIC_DISC.asItem()) {
                 this.labelIndex.set(EtchedMusicDiscItem.getPattern(discStack).ordinal());
             } else {
                 this.labelIndex.set(0);
@@ -265,7 +265,8 @@ public class EtchingMenu extends AbstractContainerMenu {
             return;
         }
 
-        EtchedMessages.PLAY.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) this.player), new ClientboundInvalidEtchUrlPacket(""));
+        //FIXME
+        //EtchedMessages.PLAY.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) this.player), new ClientboundInvalidEtchUrlPacket(""));
         this.resultSlot.set(ItemStack.EMPTY);
         if (this.labelIndex.get() >= 0 && this.labelIndex.get() < EtchedMusicDiscItem.LabelPattern.values().length) {
             ItemStack discStack = this.discSlot.getItem();
@@ -305,7 +306,8 @@ public class EtchingMenu extends AbstractContainerMenu {
                             data = DATA_CACHE.get(this.url, () -> SoundSourceManager.resolveTracks(this.url, null, Proxy.NO_PROXY)).join();
                         } catch (Exception e) {
                             if (!level.isClientSide()) {
-                                EtchedMessages.PLAY.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) this.player), new ClientboundInvalidEtchUrlPacket(e instanceof CompletionException ? e.getCause().getMessage() : e.getMessage()));
+                                //FIXME
+                                //EtchedMessages.PLAY.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) this.player), new ClientboundInvalidEtchUrlPacket(e instanceof CompletionException ? e.getCause().getMessage() : e.getMessage()));
                             }
                             if (e instanceof CompletionException) {
                                 throw (CompletionException) e;
@@ -318,12 +320,14 @@ public class EtchingMenu extends AbstractContainerMenu {
                             data = new TrackData[]{data[0].withUrl(this.url)};
                         } catch (UnknownHostException e) {
                             if (!level.isClientSide()) {
-                                EtchedMessages.PLAY.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) this.player), new ClientboundInvalidEtchUrlPacket("Unknown host: " + this.url));
+                                //FIXME
+                                //EtchedMessages.PLAY.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) this.player), new ClientboundInvalidEtchUrlPacket("Unknown host: " + this.url));
                             }
                             throw new CompletionException("Invalid URL", e);
                         } catch (Exception e) {
                             if (!level.isClientSide()) {
-                                EtchedMessages.PLAY.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) this.player), new ClientboundInvalidEtchUrlPacket(e.getLocalizedMessage()));
+                                //FIXME
+                                //EtchedMessages.PLAY.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) this.player), new ClientboundInvalidEtchUrlPacket(e.getLocalizedMessage()));
                             }
                             throw new CompletionException("Invalid URL", e);
                         }

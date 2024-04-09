@@ -13,6 +13,7 @@ import net.minecraft.world.Clearable;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.AABB;
 import org.jetbrains.annotations.Nullable;
@@ -29,7 +30,10 @@ public class RadioBlockEntity extends BlockEntity implements Clearable {
     private boolean loaded;
 
     public RadioBlockEntity(BlockPos pos, BlockState state) {
-        super(EtchedBlocks.RADIO_BE, pos, state);
+        this(EtchedBlocks.RADIO_BE.get(), pos, state);
+    }
+    public RadioBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
+        super(type, pos, state);
     }
 
     public static void tick(Level level, BlockPos pos, BlockState state, RadioBlockEntity blockEntity) {

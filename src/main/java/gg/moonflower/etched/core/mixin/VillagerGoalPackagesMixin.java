@@ -3,7 +3,8 @@ package gg.moonflower.etched.core.mixin;
 import com.google.common.collect.ImmutableList;
 import com.mojang.datafixers.util.Pair;
 import gg.moonflower.etched.common.entity.WorkAtNoteBlock;
-import gg.moonflower.etched.core.registry.EtchedVillagers;
+//TODO:FIX
+//import gg.moonflower.etched.core.registry.EtchedVillagers;
 import net.minecraft.world.entity.ai.behavior.Behavior;
 import net.minecraft.world.entity.ai.behavior.VillagerGoalPackages;
 import net.minecraft.world.entity.ai.behavior.WorkAtPoi;
@@ -34,9 +35,9 @@ public class VillagerGoalPackagesMixin {
 
     @ModifyVariable(method = "getWorkPackage", index = 2, at = @At(value = "INVOKE", target = "Lnet/minecraft/world/entity/ai/behavior/VillagerGoalPackages;getMinimalLookBehavior()Lcom/mojang/datafixers/util/Pair;"))
     private static WorkAtPoi modifyWorkPoi(WorkAtPoi value) {
-        if (etched$capturedProfession == EtchedVillagers.BARD.get()) {
-            return new WorkAtNoteBlock();
-        }
+        //if (etched$capturedProfession == EtchedVillagers.BARD.get()) {
+        //    return new WorkAtNoteBlock();
+        // }
         return value;
     }
 }

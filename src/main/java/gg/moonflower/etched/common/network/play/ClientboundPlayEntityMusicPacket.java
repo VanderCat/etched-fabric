@@ -4,7 +4,6 @@ import gg.moonflower.etched.common.network.play.handler.EtchedClientPlayPacketHa
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.network.NetworkEvent;
 import org.jetbrains.annotations.ApiStatus;
 
 /**
@@ -42,11 +41,6 @@ public class ClientboundPlayEntityMusicPacket implements EtchedPacket {
             buf.writeItem(this.record);
         }
         buf.writeVarInt(this.entityId);
-    }
-
-    @Override
-    public void processPacket(NetworkEvent.Context ctx) {
-        EtchedClientPlayPacketHandler.handlePlayEntityMusicPacket(this, ctx);
     }
 
     /**

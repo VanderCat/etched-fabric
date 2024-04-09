@@ -152,6 +152,6 @@ public class AlbumJukeboxBlock extends BaseEntityBlock {
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, EtchedBlocks.ALBUM_JUKEBOX_BE, AlbumJukeboxBlockEntity::tick);
+        return createTickerHelper(blockEntityType, (BlockEntityType<AlbumJukeboxBlockEntity>)EtchedBlocks.ALBUM_JUKEBOX_BE.get(), AlbumJukeboxBlockEntity::tick);
     }
 }

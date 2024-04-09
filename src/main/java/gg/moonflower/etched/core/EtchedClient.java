@@ -1,5 +1,7 @@
 package gg.moonflower.etched.core;
 
+import org.quiltmc.loader.api.minecraft.ClientOnly;
+
 import gg.moonflower.etched.client.render.EtchedModelLayers;
 import gg.moonflower.etched.client.render.JukeboxMinecartRenderer;
 import gg.moonflower.etched.client.render.item.AlbumCoverItemRenderer;
@@ -10,6 +12,7 @@ import gg.moonflower.etched.common.item.MusicLabelItem;
 import gg.moonflower.etched.core.registry.EtchedBlocks;
 import gg.moonflower.etched.core.registry.EtchedEntities;
 import gg.moonflower.etched.core.registry.EtchedItems;
+import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.MinecartModel;
 import net.minecraft.client.resources.model.ModelResourceLocation;
@@ -18,40 +21,29 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.client.event.EntityRenderersEvent;
-import net.minecraftforge.client.event.ModelEvent;
-import net.minecraftforge.client.event.RegisterClientReloadListenersEvent;
-import net.minecraftforge.client.event.RegisterColorHandlersEvent;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber(value = Dist.CLIENT, modid = Etched.MOD_ID, bus = Mod.EventBusSubscriber.Bus.MOD)
+@ClientOnly
 public class EtchedClient {
 
-    @SubscribeEvent
-    public static void registerReloadListeners(RegisterClientReloadListenersEvent event) {
-        event.registerReloadListener(AlbumCoverItemRenderer.INSTANCE);
-    }
-
-    @SubscribeEvent
-    public static void registerItemGroups(BuildCreativeModeTabContentsEvent event) {
-        ResourceKey<CreativeModeTab> tab = event.getTabKey();
-        if (tab == CreativeModeTabs.TOOLS_AND_UTILITIES) {
-            event.accept(EtchedItems.MUSIC_LABEL);
+    public static void registerItemGroups() {
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register(event -> {
+    	    event.accept(EtchedItems.MUSIC_LABEL);
             event.accept(EtchedItems.BLANK_MUSIC_DISC);
             event.accept(EtchedItems.BOOMBOX);
             event.accept(EtchedItems.ALBUM_COVER);
-        } else if (tab == CreativeModeTabs.REDSTONE_BLOCKS) {
-            event.accept(EtchedItems.JUKEBOX_MINECART);
-        } else if (tab == CreativeModeTabs.FUNCTIONAL_BLOCKS) {
-            event.accept(EtchedBlocks.ETCHING_TABLE);
+        });
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.REDSTONE_BLOCKS).register(event -> {
+    	    event.accept(EtchedItems.JUKEBOX_MINECART);
+        });
+        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register(event -> {
+    	    event.accept(EtchedBlocks.ETCHING_TABLE);
             event.accept(EtchedBlocks.ALBUM_JUKEBOX);
             event.accept(EtchedBlocks.RADIO);
-        }
+        });
     }
 
+    //TODO: FIX
+    /*
     @SubscribeEvent
     public static void registerCustomModels(ModelEvent.RegisterAdditional event) {
         ResourceManager resourceManager = Minecraft.getInstance().getResourceManager();
@@ -92,5 +84,5 @@ public class EtchedClient {
             }
             return -1;
         }, EtchedItems.ETCHED_MUSIC_DISC.get());
-    }
+    } */
 }

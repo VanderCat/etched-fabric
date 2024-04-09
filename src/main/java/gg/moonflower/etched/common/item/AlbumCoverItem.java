@@ -42,6 +42,7 @@ public class AlbumCoverItem extends PlayableRecordItem implements ContainerItem 
         super(properties);
     }
 
+    /* //FIXME
     @Override
     public void initializeClient(Consumer<IClientItemExtensions> consumer) {
         consumer.accept(new IClientItemExtensions() {
@@ -50,7 +51,7 @@ public class AlbumCoverItem extends PlayableRecordItem implements ContainerItem 
                 return AlbumCoverItemRenderer.INSTANCE;
             }
         });
-    }
+    } */
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
@@ -184,7 +185,7 @@ public class AlbumCoverItem extends PlayableRecordItem implements ContainerItem 
     }
 
     private static void add(ItemStack albumCover, ItemStack record) {
-        if (!albumCover.is(EtchedItems.ALBUM_COVER) || !AlbumCoverMenu.isValid(record)) {
+        if (!albumCover.is(EtchedItems.ALBUM_COVER.asItem()) || !AlbumCoverMenu.isValid(record)) {
             return;
         }
 
@@ -206,7 +207,7 @@ public class AlbumCoverItem extends PlayableRecordItem implements ContainerItem 
     }
 
     private static boolean canAdd(ItemStack albumCover, ItemStack record) {
-        if (!albumCover.is(EtchedItems.ALBUM_COVER) || !AlbumCoverMenu.isValid(record)) {
+        if (!albumCover.is(EtchedItems.ALBUM_COVER.asItem()) || !AlbumCoverMenu.isValid(record)) {
             return false;
         }
         return albumCover.getTag() == null || !albumCover.getTag().contains("Records", Tag.TAG_LIST) || albumCover.getTag().getList("Records", Tag.TAG_COMPOUND).size() < MAX_RECORDS;
@@ -228,13 +229,14 @@ public class AlbumCoverItem extends PlayableRecordItem implements ContainerItem 
         return getRecords(stack).stream().filter(record -> record.getItem() instanceof PlayableRecord).mapToInt(record -> ((PlayableRecord) record.getItem()).getTrackCount(record)).sum();
     }
 
+    /* //FIXME
     @Override
     public boolean canGrindstoneRepair(ItemStack stack) {
         return getCoverStack(stack).isPresent();
-    }
+    } */
 
     public static Optional<ItemStack> getCoverStack(ItemStack stack) {
-        if (stack.getItem() != EtchedItems.ALBUM_COVER) {
+        if (stack.getItem() != EtchedItems.ALBUM_COVER.asItem()) {
             return Optional.empty();
         }
 
@@ -248,7 +250,7 @@ public class AlbumCoverItem extends PlayableRecordItem implements ContainerItem 
     }
 
     public static List<ItemStack> getRecords(ItemStack stack) {
-        if (stack.getItem() != EtchedItems.ALBUM_COVER) {
+        if (stack.getItem() != EtchedItems.ALBUM_COVER.asItem()) {
             return Collections.emptyList();
         }
 
@@ -274,7 +276,7 @@ public class AlbumCoverItem extends PlayableRecordItem implements ContainerItem 
     }
 
     public static void setCover(ItemStack stack, ItemStack record) {
-        if (stack.getItem() != EtchedItems.ALBUM_COVER) {
+        if (stack.getItem() != EtchedItems.ALBUM_COVER.asItem()) {
             return;
         }
 
@@ -286,7 +288,7 @@ public class AlbumCoverItem extends PlayableRecordItem implements ContainerItem 
     }
 
     public static void setRecords(ItemStack stack, Collection<ItemStack> records) {
-        if (stack.getItem() != EtchedItems.ALBUM_COVER || records.isEmpty()) {
+        if (stack.getItem() != EtchedItems.ALBUM_COVER.asItem() || records.isEmpty()) {
             return;
         }
 

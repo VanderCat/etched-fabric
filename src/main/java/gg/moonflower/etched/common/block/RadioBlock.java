@@ -36,7 +36,6 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
-import net.minecraftforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.Map;
@@ -71,7 +70,8 @@ public class RadioBlock extends BaseEntityBlock {
         }
         player.openMenu(state.getMenuProvider(level, pos)).ifPresent(__ -> {
             String url = level.getBlockEntity(pos) instanceof RadioBlockEntity be ? be.getUrl() : "";
-            EtchedMessages.PLAY.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player), new ClientboundSetUrlPacket(url));
+            //FIXME
+            //EtchedMessages.PLAY.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player), new ClientboundSetUrlPacket(url));
         });
         return InteractionResult.CONSUME;
     }
@@ -192,6 +192,6 @@ public class RadioBlock extends BaseEntityBlock {
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType) {
-        return createTickerHelper(blockEntityType, EtchedBlocks.RADIO_BE, RadioBlockEntity::tick);
+        return createTickerHelper(blockEntityType, EtchedBlocks.RADIO_BE.get(), RadioBlockEntity::tick);
     }
 }

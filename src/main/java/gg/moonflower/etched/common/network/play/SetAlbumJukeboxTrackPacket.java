@@ -3,7 +3,6 @@ package gg.moonflower.etched.common.network.play;
 import gg.moonflower.etched.common.network.play.handler.EtchedClientPlayPacketHandler;
 import gg.moonflower.etched.common.network.play.handler.EtchedServerPlayPacketHandler;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.network.NetworkEvent;
 import org.jetbrains.annotations.ApiStatus;
 
 /**
@@ -22,13 +21,5 @@ public record SetAlbumJukeboxTrackPacket(int playingIndex, int track) implements
     public void writePacketData(FriendlyByteBuf buf) {
         buf.writeVarInt(this.playingIndex);
         buf.writeVarInt(this.track);
-    }
-
-    @Override
-    public void processPacket(NetworkEvent.Context ctx) {
-        switch (ctx.getDirection().getReceptionSide()) {
-            case CLIENT -> EtchedClientPlayPacketHandler.handleSetAlbumJukeboxTrack(this, ctx);
-            case SERVER -> EtchedServerPlayPacketHandler.handleSetAlbumJukeboxTrack(this, ctx);
-        }
     }
 }

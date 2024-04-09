@@ -6,7 +6,6 @@ import gg.moonflower.etched.common.network.play.handler.EtchedClientPlayPacketHa
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.network.NetworkEvent;
 import org.jetbrains.annotations.ApiStatus;
 
 /**
@@ -25,11 +24,6 @@ public record ClientboundPlayMusicPacket(ItemStack record, BlockPos pos) impleme
     public void writePacketData(FriendlyByteBuf buf) {
         buf.writeItem(this.record);
         buf.writeBlockPos(this.pos);
-    }
-
-    @Override
-    public void processPacket(NetworkEvent.Context ctx) {
-        EtchedClientPlayPacketHandler.handlePlayMusicPacket(this, ctx);
     }
 
     /**

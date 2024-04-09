@@ -3,7 +3,6 @@ package gg.moonflower.etched.api.record;
 import gg.moonflower.etched.api.sound.SoundTracker;
 import gg.moonflower.etched.common.network.EtchedMessages;
 import gg.moonflower.etched.common.network.play.ClientboundPlayEntityMusicPacket;
-import net.fabricmc.api.Environment;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
 import net.minecraft.client.resources.sounds.SoundInstance;
@@ -11,9 +10,6 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
-import net.minecraftforge.network.PacketDistributor;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
 
 import java.net.Proxy;
@@ -60,7 +56,8 @@ public interface PlayableRecord {
      * @param restart Whether to restart the track from the beginning or start a new playback
      */
     static void playEntityRecord(Entity entity, ItemStack record, boolean restart) {
-        EtchedMessages.PLAY.send(PacketDistributor.TRACKING_ENTITY.with(() -> entity), new ClientboundPlayEntityMusicPacket(record, entity, restart));
+        //FIXME
+        //EtchedMessages.PLAY.send(PacketDistributor.TRACKING_ENTITY.with(() -> entity), new ClientboundPlayEntityMusicPacket(record, entity, restart));
     }
 
     /**
@@ -69,7 +66,8 @@ public interface PlayableRecord {
      * @param entity The entity to stop playing records
      */
     static void stopEntityRecord(Entity entity) {
-        EtchedMessages.PLAY.send(PacketDistributor.TRACKING_ENTITY.with(() -> entity), new ClientboundPlayEntityMusicPacket(entity));
+        //FIXME
+        //EtchedMessages.PLAY.send(PacketDistributor.TRACKING_ENTITY.with(() -> entity), new ClientboundPlayEntityMusicPacket(entity));
     }
 
     /**

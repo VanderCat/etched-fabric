@@ -8,6 +8,11 @@ base {
     archivesName = project.archives_base_name
 }
 
+project.configurations.all {
+    exclude(group: "net.fabricmc", module: "fabric-loader")
+    exclude(group: "net.fabricmc.fabric-api")
+}
+
 version = project.mod_version
 group = project.maven_group
 
@@ -37,12 +42,14 @@ repositories {
         name = 'ParchmentMC'
         url = 'https://maven.parchmentmc.org'
     }
-    maven {
+    maven { 
         name = "Fuzs Mod Resources"
         url = "https://raw.githubusercontent.com/Fuzss/modresources/main/maven/"
     }
     maven { url "https://maven.terraformersmc.com/releases/" }
     maven { url = "https://mvn.devos.one/snapshots/" }
+    maven { url ="https://repo1.maven.org/maven2/"}
+    maven { url = "https://jitpack.io/" }
 }
 
 configurations {
@@ -62,21 +69,28 @@ dependencies {
     modLocalRuntime "fuzs.forgeconfigscreens:forgeconfigscreens-fabric:${forge_cofig_api_version}"
     modLocalRuntime 'com.terraformersmc:modmenu:7.1.0'
     modImplementation(include("com.tterrag.registrate_fabric:Registrate:${project.registrate_version}"))
+            {exclude group: "com.github.LlamaLad7" }
 
     shadowCommon(implementation("javazoom:jlayer:1.0.1"))
 }
 
 processResources {
-    inputs.property "mod_id", project.mod_id
-    inputs.property "mod_version", project.mod_version
-    inputs.property "mod_name", project.mod_name
-    inputs.property "mod_description", project.mod_description
-    inputs.property "archives_base_name", project.archives_base_name
+    inputs.property "mod_id", mod_id
+    inputs.property "mod_version", mod_version
+    inputs.property "mod_name", mod_name
+    inputs.property "mod_description", mod_description
+    inputs.property "archives_base_name", archives_base_name
 
-    inputs.property "minecraft_version", project.minecraft_version
+    inputs.property "minecraft_version", minecraft_version
 
     filesMatching('quilt.mod.json') {
-        expand 'version': version, 'group': project.group
+        expand 'mod_version': mod_version,
+        "mod_id": mod_id,
+        "mod_name": mod_name,
+        "mod_description": mod_description,
+        "archives_base_name": archives_base_name,
+
+        "minecraft_version": minecraft_version
     }
 }
 

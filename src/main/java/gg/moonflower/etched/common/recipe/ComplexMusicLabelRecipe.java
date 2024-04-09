@@ -80,6 +80,6 @@ public class ComplexMusicLabelRecipe extends CustomRecipe {
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return EtchedRecipes.COMPLEX_MUSIC_LABEL.get();
+        return EtchedRecipes.COMPLEX_MUSIC_LABEL;
     }
 }

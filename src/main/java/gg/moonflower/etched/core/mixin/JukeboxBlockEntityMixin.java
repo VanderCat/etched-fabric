@@ -17,7 +17,6 @@ import net.minecraft.world.level.block.entity.JukeboxBlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraft.world.ticks.ContainerSingleItem;
-import net.minecraftforge.network.PacketDistributor;
 import org.jetbrains.annotations.Nullable;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -60,13 +59,14 @@ public abstract class JukeboxBlockEntityMixin extends BlockEntity implements Con
     public void startPlaying(CallbackInfo ci) {
         if (!(this.getFirstItem().getItem() instanceof RecordItem)) {
             BlockPos pos = this.getBlockPos();
-            EtchedMessages.PLAY.send(PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 64, this.level.dimension())), new ClientboundPlayMusicPacket(this.getFirstItem().copy(), pos));
+            //TODO:FIX
+            //EtchedMessages.PLAY.send(PacketDistributor.NEAR.with(() -> new PacketDistributor.TargetPoint(pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 64, this.level.dimension())), new ClientboundPlayMusicPacket(this.getFirstItem().copy(), pos));
         }
     }
 
     @Inject(method = "setItem", at = @At("HEAD"), cancellable = true)
     public void setItem(int slot, ItemStack stack, CallbackInfo ci) {
-        if (stack.is(EtchedItems.ALBUM_COVER) && this.level != null) {
+        if (stack.is(EtchedItems.ALBUM_COVER.asItem()) && this.level != null) {
             this.items.set(slot, stack);
             this.setHasRecordBlockState(null, true);
             this.startPlaying();

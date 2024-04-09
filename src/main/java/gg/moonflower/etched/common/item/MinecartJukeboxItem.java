@@ -1,6 +1,6 @@
 package gg.moonflower.etched.common.item;
 
-import gg.moonflower.etched.common.entity.MinecartJukebox;
+//import gg.moonflower.etched.common.entity.MinecartJukebox;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockSource;
 import net.minecraft.core.Direction;
@@ -56,12 +56,13 @@ public class MinecartJukeboxItem extends Item {
                 }
             }
 
-            MinecartJukebox jukeboxMinecart = new MinecartJukebox(level, d, e + k, f);
+            //FIXME
+            /*MinecartJukebox jukeboxMinecart = new MinecartJukebox(level, d, e + k, f);
             if (stack.hasCustomHoverName()) {
                 jukeboxMinecart.setCustomName(stack.getHoverName());
             }
 
-            level.addFreshEntity(jukeboxMinecart);
+            level.addFreshEntity(jukeboxMinecart);*/
             stack.shrink(1);
             return stack;
         }
@@ -93,12 +94,13 @@ public class MinecartJukeboxItem extends Item {
                 d = 0.5D;
             }
 
-            MinecartJukebox jukeboxMinecart = new MinecartJukebox(level, blockPos.getX() + 0.5D, blockPos.getY() + 0.0625D + d, blockPos.getZ() + 0.5D);
+            //FIXME
+            /*MinecartJukebox jukeboxMinecart = new MinecartJukebox(level, blockPos.getX() + 0.5D, blockPos.getY() + 0.0625D + d, blockPos.getZ() + 0.5D);
             if (stack.hasCustomHoverName()) {
                 jukeboxMinecart.setCustomName(stack.getHoverName());
             }
 
-            level.addFreshEntity(jukeboxMinecart);
+            level.addFreshEntity(jukeboxMinecart);*/
         }
 
         stack.shrink(1);

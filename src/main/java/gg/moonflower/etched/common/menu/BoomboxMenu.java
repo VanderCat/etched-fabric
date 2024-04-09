@@ -43,7 +43,7 @@ public class BoomboxMenu extends AbstractContainerMenu {
                 this.addSlot(new Slot(inventory, x + y * 9 + 9, 8 + x * 18, y * 18 + 51) {
                     @Override
                     public boolean mayPickup(Player player) {
-                        return this.getItem().getItem() != EtchedItems.BOOMBOX;
+                        return this.getItem().getItem() != EtchedItems.BOOMBOX.asItem();
                     }
                 });
             }
@@ -53,7 +53,7 @@ public class BoomboxMenu extends AbstractContainerMenu {
             this.addSlot(new Slot(inventory, i, 8 + i * 18, 109) {
                 @Override
                 public boolean mayPickup(Player player) {
-                    return this.getItem().getItem() != EtchedItems.BOOMBOX;
+                    return this.getItem().getItem() != EtchedItems.BOOMBOX.asItem();
                 }
             });
         }

@@ -2,7 +2,6 @@ package gg.moonflower.etched.common.network.play;
 
 import gg.moonflower.etched.common.network.play.handler.EtchedClientPlayPacketHandler;
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraftforge.network.NetworkEvent;
 import org.jetbrains.annotations.ApiStatus;
 
 /**
@@ -19,10 +18,5 @@ public record ClientboundInvalidEtchUrlPacket(String exception) implements Etche
     @Override
     public void writePacketData(FriendlyByteBuf buf) {
         buf.writeUtf(this.exception);
-    }
-
-    @Override
-    public void processPacket(NetworkEvent.Context ctx) {
-        EtchedClientPlayPacketHandler.handleSetInvalidEtch(this, ctx);
     }
 }
