@@ -6,6 +6,7 @@ import gg.moonflower.etched.api.record.TrackData;
 import gg.moonflower.etched.client.render.item.AlbumCoverItemRenderer;
 import gg.moonflower.etched.common.menu.AlbumCoverMenu;
 import gg.moonflower.etched.core.Etched;
+import gg.moonflower.etched.core.quilt.EtchedConfig;
 import gg.moonflower.etched.core.registry.EtchedItems;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.nbt.CompoundTag;
@@ -66,7 +67,7 @@ public class AlbumCoverItem extends PlayableRecordItem implements ContainerItem 
             return InteractionResultHolder.pass(stack);
         }
 
-        if (!Etched.SERVER_CONFIG.useAlbumCoverMenu.get()) {
+        if (!EtchedConfig.INSTANCE.SERVER.useAlbumCoverMenu.value()) {
             return InteractionResultHolder.fail(stack);
         }
         return this.use(this, level, player, hand);
@@ -79,7 +80,7 @@ public class AlbumCoverItem extends PlayableRecordItem implements ContainerItem 
 
     @Override
     public boolean overrideStackedOnOther(ItemStack albumCover, Slot slot, ClickAction clickAction, Player player) {
-        if (Etched.SERVER_CONFIG.useAlbumCoverMenu.get()) {
+        if (EtchedConfig.INSTANCE.SERVER.useAlbumCoverMenu.value()) {
             return false;
         }
         if (clickAction != ClickAction.SECONDARY) {
@@ -102,7 +103,7 @@ public class AlbumCoverItem extends PlayableRecordItem implements ContainerItem 
 
     @Override
     public boolean overrideOtherStackedOnMe(ItemStack albumCover, ItemStack clickItem, Slot slot, ClickAction clickAction, Player player, SlotAccess slotAccess) {
-        if (Etched.SERVER_CONFIG.useAlbumCoverMenu.get()) {
+        if (EtchedConfig.INSTANCE.SERVER.useAlbumCoverMenu.value()) {
             return false;
         }
         if (clickAction == ClickAction.SECONDARY && slot.allowModification(player)) {

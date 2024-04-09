@@ -2,14 +2,19 @@ package gg.moonflower.etched.common.block;
 
 import gg.moonflower.etched.common.menu.EtchingMenu;
 import gg.moonflower.etched.core.Etched;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
@@ -25,6 +30,7 @@ import net.minecraft.world.level.pathfinder.PathComputationType;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.Nullable;
 
 public class EtchingTableBlock extends Block {
 
@@ -47,7 +53,9 @@ public class EtchingTableBlock extends Block {
         if (level.isClientSide()) {
             return InteractionResult.SUCCESS;
         }
-        player.openMenu(blockState.getMenuProvider(level, blockPos));
+        var menuProvider = blockState.getMenuProvider(level, blockPos);
+        if (menuProvider!=null)
+            player.openMenu(menuProvider);
         // TODO: stats
         return InteractionResult.CONSUME;
     }

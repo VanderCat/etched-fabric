@@ -4,6 +4,7 @@ import gg.moonflower.etched.api.record.PlayableRecord;
 import gg.moonflower.etched.api.sound.SoundTracker;
 import gg.moonflower.etched.common.menu.BoomboxMenu;
 import gg.moonflower.etched.core.Etched;
+import gg.moonflower.etched.core.quilt.EtchedConfig;
 import gg.moonflower.etched.core.registry.EtchedItems;
 import it.unimi.dsi.fastutil.ints.Int2ObjectArrayMap;
 import net.minecraft.ChatFormatting;
@@ -94,7 +95,7 @@ public class BoomboxItem extends Item implements ContainerItem {
             setPaused(stack, !isPaused(stack));
             return InteractionResultHolder.sidedSuccess(stack, level.isClientSide());
         }
-        if (!Etched.SERVER_CONFIG.useBoomboxMenu.get()) {
+        if (!EtchedConfig.INSTANCE.SERVER.useBoomboxMenu.value()) {
             return InteractionResultHolder.fail(stack);
         }
         return this.use(this, level, player, hand);
@@ -107,7 +108,7 @@ public class BoomboxItem extends Item implements ContainerItem {
 
     @Override
     public boolean overrideStackedOnOther(ItemStack boombox, Slot slot, ClickAction clickAction, Player player) {
-        if (Etched.SERVER_CONFIG.useBoomboxMenu.get()) {
+        if (EtchedConfig.INSTANCE.SERVER.useBoomboxMenu.value()) {
             return false;
         }
         if (clickAction != ClickAction.SECONDARY) {
@@ -128,7 +129,7 @@ public class BoomboxItem extends Item implements ContainerItem {
 
     @Override
     public boolean overrideOtherStackedOnMe(ItemStack boombox, ItemStack clickItem, Slot slot, ClickAction clickAction, Player player, SlotAccess slotAccess) {
-        if (Etched.SERVER_CONFIG.useBoomboxMenu.get()) {
+        if (EtchedConfig.INSTANCE.SERVER.useBoomboxMenu.value()) {
             return false;
         }
         if (clickAction == ClickAction.SECONDARY && slot.allowModification(player)) {

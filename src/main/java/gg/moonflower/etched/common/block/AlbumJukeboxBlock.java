@@ -3,6 +3,7 @@ package gg.moonflower.etched.common.block;
 import gg.moonflower.etched.common.blockentity.AlbumJukeboxBlockEntity;
 import gg.moonflower.etched.core.Etched;
 import gg.moonflower.etched.core.mixin.client.LevelRendererAccessor;
+import gg.moonflower.etched.core.quilt.EtchedConfig;
 import gg.moonflower.etched.core.registry.EtchedBlocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.SoundInstance;
@@ -130,7 +131,7 @@ public class AlbumJukeboxBlock extends BaseEntityBlock {
     @ClientOnly
     @Override
     public void animateTick(BlockState state, Level level, BlockPos pos, RandomSource random) {
-        if (!Etched.CLIENT_CONFIG.showNotes.get() || !level.getBlockState(pos.above()).isAir()) {
+        if (!EtchedConfig.INSTANCE.CLIENT.showNotes.value() || !level.getBlockState(pos.above()).isAir()) {
             return;
         }
 

@@ -1,5 +1,8 @@
 package gg.moonflower.etched.core;
 
+import gg.moonflower.etched.client.screen.EtchingScreen;
+import gg.moonflower.etched.core.registry.EtchedMenus;
+import net.minecraft.client.gui.screens.MenuScreens;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
 
 import gg.moonflower.etched.client.render.EtchedModelLayers;
@@ -26,6 +29,7 @@ import net.minecraft.world.item.CreativeModeTabs;
 public class EtchedClient {
 
     public static void registerItemGroups() {
+        MenuScreens.register(EtchedMenus.ETCHING_MENU, EtchingScreen::new);
         //TODO: Move to registrat
         /*ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register(event -> {
     	    event.accept(EtchedBlocks.ETCHING_TABLE.asStack(1));

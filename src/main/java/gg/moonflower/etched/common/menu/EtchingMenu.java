@@ -16,6 +16,9 @@ import gg.moonflower.etched.core.registry.EtchedBlocks;
 import gg.moonflower.etched.core.registry.EtchedItems;
 import gg.moonflower.etched.core.registry.EtchedMenus;
 import gg.moonflower.etched.core.registry.EtchedSounds;
+import net.fabricmc.fabric.api.screenhandler.v1.ExtendedScreenHandlerFactory;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundSource;
@@ -27,6 +30,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.*;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.Nullable;
+
 import java.io.IOException;
 import java.net.HttpURLConnection;
 import java.net.Proxy;
@@ -77,9 +82,15 @@ public class EtchingMenu extends AbstractContainerMenu {
     public EtchingMenu(int id, Inventory inventory) {
         this(id, inventory, ContainerLevelAccess.NULL);
     }
+    public EtchingMenu(MenuType<?> menuType, int id, Inventory inventory) {
+        this(menuType, id, inventory, ContainerLevelAccess.NULL);
+    }
 
     public EtchingMenu(int id, Inventory inventory, ContainerLevelAccess containerLevelAccess) {
-        super(EtchedMenus.ETCHING_MENU.get(), id);
+        this(EtchedMenus.ETCHING_MENU, id, inventory, containerLevelAccess);
+    }
+    public EtchingMenu(MenuType<?> menuType, int id, Inventory inventory, ContainerLevelAccess containerLevelAccess) {
+        super(menuType, id);
         this.player = inventory.player;
         this.labelIndex = DataSlot.standalone();
         this.input = new SimpleContainer(2) {
