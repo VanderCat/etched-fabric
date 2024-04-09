@@ -19,11 +19,11 @@
     },
     "intermediate_mappings": "net.fabricmc:intermediary",
     "entrypoints": {
-      "main": [
-        "gg.moonflower.etched.core.fabric.EtchedFabric"
+      "init": [
+        "gg.moonflower.etched.core.quilt.EtchedFabric"
       ],
-      "client": [
-        "gg.moonflower.etched.core.fabric.EtchedFabricClient"
+      "client_init": [
+        "gg.moonflower.etched.core.quilt.EtchedFabricClient"
       ]
     },
     "depends": [

@@ -62,4 +62,5 @@ public class EtchedMenus {
         )
         .register();
     //REGISTRY.register("radio", () -> new MenuType<>(RadioMenu::new, FeatureFlags.VANILLA_SET));
+    public static void register() {}
 }

@@ -18,4 +18,5 @@ public class EtchedSounds {
         var full_id = new ResourceLocation(Etched.MOD_ID, id);
         return Registry.register(BuiltInRegistries.SOUND_EVENT, full_id, SoundEvent.createVariableRangeEvent(full_id));
     }
+    public static void register() {}
 }

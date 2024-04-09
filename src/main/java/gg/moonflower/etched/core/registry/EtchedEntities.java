@@ -23,4 +23,5 @@ public class EtchedEntities {
         var id = new ResourceLocation(Etched.MOD_ID, name);
         return Registry.register(BuiltInRegistries.ENTITY_TYPE, id, value.get());
     }
+    public static void register() {}
 }

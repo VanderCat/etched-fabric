@@ -26,23 +26,15 @@ import net.minecraft.world.item.CreativeModeTabs;
 public class EtchedClient {
 
     public static void registerItemGroups() {
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.TOOLS_AND_UTILITIES).register(event -> {
-    	    event.accept(EtchedItems.MUSIC_LABEL);
-            event.accept(EtchedItems.BLANK_MUSIC_DISC);
-            event.accept(EtchedItems.BOOMBOX);
-            event.accept(EtchedItems.ALBUM_COVER);
-        });
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.REDSTONE_BLOCKS).register(event -> {
-    	    event.accept(EtchedItems.JUKEBOX_MINECART);
-        });
-        ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register(event -> {
-    	    event.accept(EtchedBlocks.ETCHING_TABLE);
-            event.accept(EtchedBlocks.ALBUM_JUKEBOX);
-            event.accept(EtchedBlocks.RADIO);
-        });
+        //TODO: Move to registrat
+        /*ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register(event -> {
+    	    event.accept(EtchedBlocks.ETCHING_TABLE.asStack(1));
+            event.accept(EtchedBlocks.ALBUM_JUKEBOX.asStack(1));
+            event.accept(EtchedBlocks.RADIO.asStack(1));
+        });*/
     }
 
-    //TODO: FIX
+    //TODO: FIX`
     /*
     @SubscribeEvent
     public static void registerCustomModels(ModelEvent.RegisterAdditional event) {

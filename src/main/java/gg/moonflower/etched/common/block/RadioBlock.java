@@ -165,7 +165,8 @@ public class RadioBlock extends BaseEntityBlock {
 
     @Override
     public ItemStack getCloneItemStack(BlockGetter level, BlockPos pos, BlockState state) {
-        return new ItemStack(state.getValue(PORTAL) ? EtchedBlocks.PORTAL_RADIO_ITEM : EtchedBlocks.RADIO);
+        //FIXME
+        return new ItemStack(/*state.getValue(PORTAL) ? EtchedBlocks.PORTAL_RADIO_ITEM :*/EtchedBlocks.RADIO);
     }
 
     @Override

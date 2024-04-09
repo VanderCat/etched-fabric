@@ -42,12 +42,21 @@ public class Etched {
     }
 
     public Etched() {
-        REGISTRATE.register();
+
     }
 
     public static void init() {
-        //EtchedMessages.init();
-
+        //i guess following is needed to preload classes before registration or they will
+        // not be registered
+        EtchedTags.register();
+        EtchedMessages.init();
+        EtchedBlocks.register();
+        EtchedEntities.register();
+        EtchedItems.register();
+        EtchedMenus.register();
+        EtchedRecipes.register();
+        EtchedSounds.register();
+        REGISTRATE.register();
         SoundSourceManager.registerSource(new SoundCloudSource());
         SoundSourceManager.registerSource(new BandcampSource());
     }

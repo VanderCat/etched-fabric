@@ -15,4 +15,5 @@ public class EtchedRecipes {
         new SimpleCraftingRecipeSerializer<>(ComplexMusicLabelRecipe::new)
     );
     //REGISTRY.register("complex_music_label", () -> new SimpleCraftingRecipeSerializer<>(ComplexMusicLabelRecipe::new));
+    public static void register() {}
 }

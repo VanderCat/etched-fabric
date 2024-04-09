@@ -68,10 +68,10 @@ public class EtchedBlocks {
                     .simpleItem()
                     .register();
     //registerWithItem("radio", () -> new RadioBlock(BlockBehaviour.Properties.copy(Blocks.JUKEBOX).noOcclusion()), new Item.Properties());
-    public static final ItemEntry<PortalRadioItem> PORTAL_RADIO_ITEM =
+    /*public static final ItemEntry<PortalRadioItem> PORTAL_RADIO_ITEM =
             Etched.REGISTRATE.block("portal_radio", RadioBlock::new)
                     .item(PortalRadioItem::new)
-                    .register();
+                    .register();*/
             //EtchedItems.register("portal_radio", () -> new PortalRadioItem(RADIO.get(), new Item.Properties()));
 
     public static final BlockEntityEntry<AlbumJukeboxBlockEntity> ALBUM_JUKEBOX_BE =
@@ -83,5 +83,6 @@ public class EtchedBlocks {
         (BlockEntityEntry<RadioBlockEntity>)(Object)Etched.REGISTRATE.blockEntity("radio", RadioBlockEntity::new)
                     .validBlocks(RADIO)
                     .register();
-            //BLOCK_ENTITIES.register("radio", () -> BlockEntityType.Builder.of(RadioBlockEntity::new, RADIO.get()).build(null));
+            //BLOCK_ENTITIES.register("radio", () -> BlockEntityType.Builder.of(RadioBlockEntity::new, RADIO.get()).build(null))
+    public static void register() {} // i guess this is a hack?
 }

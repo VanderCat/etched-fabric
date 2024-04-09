@@ -9,4 +9,5 @@ import net.minecraft.world.level.block.Block;
 public class EtchedTags {
 
     public static final TagKey<Block> AUDIO_PROVIDER = TagKey.create(Registries.BLOCK, new ResourceLocation(Etched.MOD_ID, "audio_providers"));
+    public static void register() {}
 }
