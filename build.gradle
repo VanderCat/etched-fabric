@@ -69,7 +69,7 @@ dependencies {
     modLocalRuntime "fuzs.forgeconfigscreens:forgeconfigscreens-fabric:${forge_cofig_api_version}"
     modLocalRuntime 'com.terraformersmc:modmenu:7.1.0'
     modImplementation(include("com.tterrag.registrate_fabric:Registrate:${project.registrate_version}"))
-            {exclude group: "com.github.LlamaLad7" }
+            {exclude group: "com.github.llamalad7.mixinextras" }
 
     shadowCommon(implementation("javazoom:jlayer:1.0.1"))
 }
