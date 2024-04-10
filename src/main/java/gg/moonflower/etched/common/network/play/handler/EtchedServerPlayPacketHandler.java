@@ -16,6 +16,7 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.item.ItemStack;
 import org.apache.commons.lang3.StringUtils;
 import org.jetbrains.annotations.ApiStatus;
+import org.quiltmc.qsl.networking.api.PlayerLookup;
 
 @ApiStatus.Internal
 public class EtchedServerPlayPacketHandler {
@@ -62,7 +63,8 @@ public class EtchedServerPlayPacketHandler {
             server.execute(() -> {
                 ServerLevel level = player.serverLevel();
                 if (menu.setPlayingTrack(level, pkt)) {
-                    //FIXME
+                    var packet = new SetAlbumJukeboxTrackPacket(pkt.playingIndex(), pkt.track());
+                    packet.sendToClients(PlayerLookup.tracking(level, level.getChunkAt(menu.getPos()).getPos()));
                     //EtchedMessages.PLAY.send(PacketDistributor.TRACKING_CHUNK.with(() -> level.getChunkAt(menu.getPos())), new SetAlbumJukeboxTrackPacket(pkt.playingIndex(), pkt.track()));
                 }
             });

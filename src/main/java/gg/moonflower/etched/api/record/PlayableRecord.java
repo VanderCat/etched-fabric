@@ -10,7 +10,9 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.server.packs.resources.ResourceManager;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
+import org.quiltmc.qsl.networking.api.PlayerLookup;
 
 import java.net.Proxy;
 import java.util.Optional;
@@ -56,7 +58,8 @@ public interface PlayableRecord {
      * @param restart Whether to restart the track from the beginning or start a new playback
      */
     static void playEntityRecord(Entity entity, ItemStack record, boolean restart) {
-        //FIXME
+        var packet = new ClientboundPlayEntityMusicPacket(record, entity, restart);
+        packet.sendToClients(PlayerLookup.tracking(entity));
         //EtchedMessages.PLAY.send(PacketDistributor.TRACKING_ENTITY.with(() -> entity), new ClientboundPlayEntityMusicPacket(record, entity, restart));
     }
 
@@ -66,7 +69,8 @@ public interface PlayableRecord {
      * @param entity The entity to stop playing records
      */
     static void stopEntityRecord(Entity entity) {
-        //FIXME
+        var packet = new ClientboundPlayEntityMusicPacket(entity);
+        packet.sendToClients(PlayerLookup.tracking(entity));
         //EtchedMessages.PLAY.send(PacketDistributor.TRACKING_ENTITY.with(() -> entity), new ClientboundPlayEntityMusicPacket(entity));
     }
 

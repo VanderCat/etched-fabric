@@ -40,8 +40,9 @@ public class RadioScreen extends AbstractContainerScreen<RadioMenu> {
         this.url.setCanLoseFocus(false);
         this.addRenderableWidget(this.url);
         this.addRenderableWidget(Button.builder(CommonComponents.GUI_DONE, button -> {
-            //FIXME
-            //EtchedMessages.PLAY.sendToServer(new ServerboundSetUrlPacket(this.url.getValue()));
+            var packet = new ServerboundSetUrlPacket(this.url.getValue());
+            packet.sendToServer();
+            //EtchedMessages.PLAY.sendToServer();
             this.minecraft.setScreen(null);
         }).bounds((this.width - this.imageWidth) / 2, (this.height - this.imageHeight) / 2 + this.imageHeight + 5, this.imageWidth, 20).build());
     }

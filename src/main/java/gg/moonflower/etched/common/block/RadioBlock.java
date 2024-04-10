@@ -72,8 +72,9 @@ public class RadioBlock extends BaseEntityBlock {
         }
         player.openMenu(state.getMenuProvider(level, pos)).ifPresent(__ -> {
             String url = level.getBlockEntity(pos) instanceof RadioBlockEntity be ? be.getUrl() : "";
-            //FIXME
-            //EtchedMessages.PLAY.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player), new ClientboundSetUrlPacket(url));
+            var packet = new ClientboundSetUrlPacket(url);
+            packet.sendToClient((ServerPlayer) player);
+            //EtchedMessages.PLAY.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) player), );
         });
         return InteractionResult.CONSUME;
     }

@@ -12,7 +12,10 @@
     "client.ItemStackMixin",
     "client.LevelRendererAccessor",
     "client.ParrotMixin",
-    "client.SoundEngineMixin"
+    "client.SoundEngineMixin",
+    "fabric.client.ItemEntityMixin",
+    "fabric.client.LevelRendererMixin",
+    "fabric.client.StopListeningSoundMixin"
   ],
   "mixins": [
     "JukeboxBlockEntityMixin",
@@ -20,7 +23,8 @@
     "NoteBlockMixin",
     "RecordItemMixin",
     "StructureTemplatePoolAccessor",
-    "VillagerGoalPackagesMixin"
+    "VillagerGoalPackagesMixin",
+    "fabric.EntityMixin"
   ],
   "injectors": {
     "defaultRequire": 1

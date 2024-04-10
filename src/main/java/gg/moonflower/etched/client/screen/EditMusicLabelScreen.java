@@ -155,7 +155,8 @@ public class EditMusicLabelScreen extends Screen {
         SimpleMusicLabelItem.setAuthor(this.labelStack, author);
 
         int slot = this.hand == InteractionHand.MAIN_HAND ? this.player.getInventory().selected : 40;
-        //FIXME
+        var packet = new ServerboundEditMusicLabelPacket(slot, author, title);
+        packet.sendToServer();
         //EtchedMessages.PLAY.sendToServer(new ServerboundEditMusicLabelPacket(slot, author, title));
     }
 }

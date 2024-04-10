@@ -38,8 +38,5 @@
     ],
     "group": "${archives_base_name}"
   },
-  "mixins": [
-    "etched.mixins.json",
-    "fabric.mixins.json"
-  ]
+  "mixin": "etched.mixins.json"
 }

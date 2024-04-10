@@ -44,11 +44,13 @@ public interface EtchedPacket {
     default void sendToClient(ServerPlayer player) {
         var buf = getBuf();
         ServerPlayNetworking.send(player, getPacketId(), buf);
+        EtchedMessages.LOGGER.info("sent "+getPacketId()+" to "+player.getDisplayName());
     }
 
     default void sendToClients(Collection<ServerPlayer> players) {
         var buf = getBuf();
         ServerPlayNetworking.send(players, getPacketId(), buf);
+        EtchedMessages.LOGGER.info("sent "+getPacketId()+" to "+players);
     }
 
     default void sendToServer() {
