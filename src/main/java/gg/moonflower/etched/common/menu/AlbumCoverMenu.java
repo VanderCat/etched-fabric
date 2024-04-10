@@ -26,7 +26,7 @@ public class AlbumCoverMenu extends AbstractContainerMenu {
     }
 
     public AlbumCoverMenu(int containerId, Inventory inventory, int albumCoverIndex) {
-        super(EtchedMenus.ALBUM_COVER_MENU.get(), containerId);
+        super(EtchedMenus.ALBUM_COVER_MENU, containerId);
         this.albumCoverInventory = albumCoverIndex == -1 ? new SimpleContainer(AlbumCoverItem.MAX_RECORDS) : new AlbumCoverContainer(inventory, albumCoverIndex);
         this.albumCoverIndex = albumCoverIndex;
         this.inventory = inventory;

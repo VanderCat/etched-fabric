@@ -10,7 +10,6 @@
     "client.HumanoidModelMixin",
     "client.ItemRendererMixin",
     "client.ItemStackMixin",
-    "client.LevelRendererAccessor",
     "client.ParrotMixin",
     "client.SoundEngineMixin",
     "fabric.client.ItemEntityMixin",

@@ -3,3 +3,4 @@ extendable method net/minecraft/world/entity/vehicle/AbstractMinecart getDropIte
 accessible field net/minecraft/data/worldgen/ProcessorLists EMPTY Lnet/minecraft/resources/ResourceKey;
 accessible field net/minecraft/client/renderer/texture/SpriteContents originalImage Lcom/mojang/blaze3d/platform/NativeImage;
 accessible method net/minecraft/tags/BlockTags create (Ljava/lang/String;)Lnet/minecraft/tags/TagKey;
+accessible field net/minecraft/client/renderer/LevelRenderer playingRecords Ljava/util/Map;

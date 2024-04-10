@@ -9,7 +9,6 @@ import gg.moonflower.etched.client.screen.EtchingScreen;
 import gg.moonflower.etched.client.screen.RadioScreen;
 import gg.moonflower.etched.common.blockentity.AlbumJukeboxBlockEntity;
 import gg.moonflower.etched.common.network.play.*;
-import gg.moonflower.etched.core.mixin.client.LevelRendererAccessor;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.client.resources.sounds.SoundInstance;
@@ -37,7 +36,7 @@ public class EtchedClientPlayPacketHandler {
             }
             client.execute(()->{
                 BlockPos pos = pkt.pos();
-                Map<BlockPos, SoundInstance> playingRecords = ((LevelRendererAccessor) client.levelRenderer).getPlayingRecords();
+                Map<BlockPos, SoundInstance> playingRecords = client.levelRenderer.playingRecords;
                 SoundInstance soundInstance = playingRecords.get(pos);
 
                 if (soundInstance != null) {

@@ -62,7 +62,7 @@ public class EtchedBlocks {
                     .register();
     //registerWithItem("album_jukebox", () -> new AlbumJukeboxBlock(BlockBehaviour.Properties.copy(Blocks.JUKEBOX)), new Item.Properties());
     public static final BlockEntry<RadioBlock> RADIO =
-            Etched.REGISTRATE.block("album_jukebox", RadioBlock::new)
+            Etched.REGISTRATE.block("radio", RadioBlock::new)
                     .initialProperties(() -> Blocks.JUKEBOX)
                     .properties(p->p.noOcclusion())
                     .simpleItem()

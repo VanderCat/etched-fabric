@@ -6,7 +6,6 @@ import gg.moonflower.etched.common.network.EtchedMessages;
 import gg.moonflower.etched.common.network.play.ClientboundSetUrlPacket;
 import gg.moonflower.etched.core.Etched;
 import gg.moonflower.etched.core.EtchedClient;
-import gg.moonflower.etched.core.mixin.client.LevelRendererAccessor;
 import gg.moonflower.etched.core.quilt.EtchedConfig;
 import gg.moonflower.etched.core.registry.EtchedBlocks;
 import net.minecraft.client.Minecraft;
@@ -188,7 +187,7 @@ public class RadioBlock extends BaseEntityBlock {
         }
 
         Minecraft minecraft = Minecraft.getInstance();
-        Map<BlockPos, SoundInstance> sounds = ((LevelRendererAccessor) minecraft.levelRenderer).getPlayingRecords();
+        Map<BlockPos, SoundInstance> sounds = minecraft.levelRenderer.playingRecords;
         if (sounds.containsKey(pos) && minecraft.getSoundManager().isActive(sounds.get(pos))) {
             level.addParticle(ParticleTypes.NOTE, pos.getX() + 0.5D, pos.getY() + 0.7D, pos.getZ() + 0.5D, random.nextInt(25) / 24D, 0, 0);
         }

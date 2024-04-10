@@ -31,47 +31,24 @@ public class EtchedMenus {
     //public static final DeferredRegister<MenuType<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.MENU_TYPES, Etched.MOD_ID);
 
     public static final MenuType<EtchingMenu> ETCHING_MENU =
-            Registry.register(BuiltInRegistries.MENU, new ResourceLocation(Etched.MOD_ID, "etching_table"), new MenuType(EtchingMenu::new, FeatureFlags.VANILLA_SET));
+            register("etching_table", EtchingMenu::new);
 
     //register("etching_table", EtchingMenu::new, ()->EtchingScreen::new);
     //REGISTRY.register("etching_table", () -> new MenuType<>(EtchingMenu::new, FeatureFlags.VANILLA_SET));
-    public static final MenuEntry<AlbumJukeboxMenu> ALBUM_JUKEBOX_MENU = 
-        Etched.REGISTRATE.menu(
-            "album_jukebox", 
-            (type, windowId, inv) ->  new AlbumJukeboxMenu(windowId, inv), 
-            ()->AlbumJukeboxScreen::new
-        )
-        .register();;
-    public static final MenuEntry<BoomboxMenu> BOOMBOX_MENU = 
-        Etched.REGISTRATE.menu(
-            "boombox", 
-            (type, windowId, inv) ->  new BoomboxMenu(windowId, inv), 
-            ()->BoomboxScreen::new
-        )
-        .register();
+    public static final MenuType<AlbumJukeboxMenu> ALBUM_JUKEBOX_MENU =
+            register("album_jukebox", AlbumJukeboxMenu::new);
+    public static final MenuType<BoomboxMenu> BOOMBOX_MENU =
+            register("boombox", BoomboxMenu::new);
     //REGISTRY.register("boombox", () -> new MenuType<>(BoomboxMenu::new, FeatureFlags.VANILLA_SET));
-    public static final MenuEntry<AlbumCoverMenu> ALBUM_COVER_MENU = 
-        Etched.REGISTRATE.menu(
-            "album_cover", 
-            (type, windowId, inv) ->  new AlbumCoverMenu(windowId, inv), 
-            ()->AlbumCoverScreen::new
-        )
-        .register();
+    public static final MenuType<AlbumCoverMenu> ALBUM_COVER_MENU =
+            register("album_cover", AlbumCoverMenu::new);
     //REGISTRY.register("album_cover", () -> new MenuType<>(AlbumCoverMenu::new, FeatureFlags.VANILLA_SET));
-    public static final MenuEntry<RadioMenu> RADIO_MENU = 
-        Etched.REGISTRATE.menu(
-            "album_cover", 
-            (type, windowId, inv) ->  new RadioMenu(windowId, inv), 
-            ()->RadioScreen::new
-        )
-        .register();
+    public static final MenuType<RadioMenu> RADIO_MENU =
+            register("radio", RadioMenu::new);
     //REGISTRY.register("radio", () -> new MenuType<>(RadioMenu::new, FeatureFlags.VANILLA_SET));
-
-    private static <C extends AbstractContainerMenu, S extends Screen & MenuAccess<C>> MenuEntry<C> register(
-            String name, MenuBuilder.MenuFactory<C> factory, NonNullSupplier<MenuBuilder.ScreenFactory<C, S>> screenFactory) {
-        return Etched.REGISTRATE
-                .menu(name, factory, screenFactory)
-                .register();
-    }
     public static void register() {}
+
+    public static <T extends AbstractContainerMenu> MenuType<T> register(String name, MenuType.MenuSupplier<T> supplier) {
+        return Registry.register(BuiltInRegistries.MENU, new ResourceLocation(Etched.MOD_ID, name), new MenuType<T>(supplier, FeatureFlags.VANILLA_SET));
+    }
 }

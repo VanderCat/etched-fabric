@@ -30,7 +30,7 @@ public class AlbumJukeboxMenu extends AbstractContainerMenu {
     }
 
     public AlbumJukeboxMenu(int i, Inventory inventory, Container container, BlockPos pos) {
-        super(EtchedMenus.ALBUM_JUKEBOX_MENU.get(), i);
+        super(EtchedMenus.ALBUM_JUKEBOX_MENU, i);
         checkContainerSize(container, 9);
         this.container = container;
         container.startOpen(inventory.player);

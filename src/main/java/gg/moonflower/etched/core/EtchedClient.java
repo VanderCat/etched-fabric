@@ -1,7 +1,10 @@
 package gg.moonflower.etched.core;
 
-import gg.moonflower.etched.client.screen.EtchingScreen;
+import gg.moonflower.etched.client.screen.*;
+import gg.moonflower.etched.common.menu.AlbumCoverMenu;
+import gg.moonflower.etched.common.menu.AlbumJukeboxMenu;
 import gg.moonflower.etched.core.registry.EtchedMenus;
+import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.minecraft.client.gui.screens.MenuScreens;
 import org.quiltmc.loader.api.minecraft.ClientOnly;
 
@@ -30,6 +33,10 @@ public class EtchedClient {
 
     public static void registerItemGroups() {
         MenuScreens.register(EtchedMenus.ETCHING_MENU, EtchingScreen::new);
+        MenuScreens.register(EtchedMenus.BOOMBOX_MENU, BoomboxScreen::new);
+        MenuScreens.register(EtchedMenus.RADIO_MENU, RadioScreen::new);
+        MenuScreens.register(EtchedMenus.ALBUM_JUKEBOX_MENU, AlbumJukeboxScreen::new);
+        MenuScreens.register(EtchedMenus.ALBUM_COVER_MENU, AlbumCoverScreen::new);
         //TODO: Move to registrat
         /*ItemGroupEvents.modifyEntriesEvent(CreativeModeTabs.FUNCTIONAL_BLOCKS).register(event -> {
     	    event.accept(EtchedBlocks.ETCHING_TABLE.asStack(1));
@@ -59,14 +66,14 @@ public class EtchedClient {
     public static void registerEntityLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(EtchedModelLayers.JUKEBOX_MINECART, MinecartModel::createBodyLayer);
     }
+    */
 
-    @SubscribeEvent
-    public static void registerItemColors(RegisterColorHandlersEvent.Item event) {
-        event.register((stack, index) -> index == 0 || index == 1 ? MusicLabelItem.getLabelColor(stack) : -1, EtchedItems.MUSIC_LABEL.get());
-        event.register((stack, index) -> index == 0 ? ComplexMusicLabelItem.getPrimaryColor(stack) : index == 1 ? ComplexMusicLabelItem.getSecondaryColor(stack) : -1, EtchedItems.COMPLEX_MUSIC_LABEL.get());
+    public static void registerItemColors() {
+        ColorProviderRegistry.ITEM.register((stack, index) -> index == 0 || index == 1 ? MusicLabelItem.getLabelColor(stack) : -1, EtchedItems.MUSIC_LABEL.get());
+        ColorProviderRegistry.ITEM.register((stack, index) -> index == 0 ? ComplexMusicLabelItem.getPrimaryColor(stack) : index == 1 ? ComplexMusicLabelItem.getSecondaryColor(stack) : -1, EtchedItems.COMPLEX_MUSIC_LABEL.get());
 
-        event.register((stack, index) -> index > 0 ? -1 : ((BlankMusicDiscItem) stack.getItem()).getColor(stack), EtchedItems.BLANK_MUSIC_DISC.get());
-        event.register((stack, index) -> {
+        ColorProviderRegistry.ITEM.register((stack, index) -> index > 0 ? -1 : ((BlankMusicDiscItem) stack.getItem()).getColor(stack), EtchedItems.BLANK_MUSIC_DISC.get());
+        ColorProviderRegistry.ITEM.register((stack, index) -> {
             if (index == 0) {
                 return EtchedMusicDiscItem.getDiscColor(stack);
             }
@@ -80,5 +87,5 @@ public class EtchedClient {
             }
             return -1;
         }, EtchedItems.ETCHED_MUSIC_DISC.get());
-    } */
+    }
 }
