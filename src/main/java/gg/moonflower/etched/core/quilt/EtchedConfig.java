@@ -27,5 +27,8 @@ public class EtchedConfig extends ReflectiveConfig {
         @Comment("Always plays tracks in stereo even when in-world.")
         public final TrackedValue<Boolean> forceStereo = this.value(false);
 
+        @Comment("Use this token to stream audio from vk. ")
+        public final TrackedValue<String> vkAudioToken = this.value("");
+
     }
 }

@@ -5,6 +5,7 @@ import gg.moonflower.etched.api.sound.download.SoundSourceManager;
 import gg.moonflower.etched.common.network.EtchedMessages;
 import gg.moonflower.etched.common.sound.download.BandcampSource;
 import gg.moonflower.etched.common.sound.download.SoundCloudSource;
+import gg.moonflower.etched.common.sound.download.VkMusicSource;
 import gg.moonflower.etched.core.quilt.EtchedConfig;
 import gg.moonflower.etched.core.registry.*;
 
@@ -32,5 +33,6 @@ public class Etched {
         EtchedConfig config = EtchedConfig.INSTANCE;
         SoundSourceManager.registerSource(new SoundCloudSource());
         SoundSourceManager.registerSource(new BandcampSource());
+        SoundSourceManager.registerSource(new VkMusicSource());
     }
 }
