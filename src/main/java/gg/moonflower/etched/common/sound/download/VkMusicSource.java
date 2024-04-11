@@ -26,7 +26,7 @@ import java.util.*;
 
 public class VkMusicSource implements SoundDownloadSource  {
 
-    private static final Component BRAND = Component.translatable("sound_source." + Etched.MOD_ID + ".vk").withStyle(style -> style.withColor(TextColor.fromRgb(0x477987)));
+    private static final Component BRAND = Component.translatable("sound_source." + Etched.MOD_ID + ".vkontakte").withStyle(style -> style.withColor(TextColor.fromRgb(0x477987)));
 
     public static final Logger LOGGER = LogManager.getLogger("Etched/Sources/Vk");
     private URL getVkApiUrl(String method, Map<String, String> query) {
@@ -99,7 +99,19 @@ public class VkMusicSource implements SoundDownloadSource  {
     }
     @Override
     public List<URL> resolveUrl(String url, @Nullable DownloadProgressListener progressListener, Proxy proxy) throws IOException {
-        return new ArrayList<URL>(List.of(new URL[]{new URL(url)}));
+        return this.resolve(url, progressListener, proxy, trackInfos -> {
+            if (progressListener != null) {
+                progressListener.progressStartRequest(RESOLVING_TRACKS);
+            }
+            List<URL> trackUrls = new ArrayList<>(trackInfos.size());
+            for (int i = 0; i < trackInfos.size(); i++) {
+                var trackUrl = trackInfos.get(i).url;
+                if (trackUrl != null) {
+                    trackUrls.add(trackUrl);
+                }
+            }
+            return trackUrls;
+        });
     }
 
     @Override
@@ -110,7 +122,7 @@ public class VkMusicSource implements SoundDownloadSource  {
             }
             var list = new ArrayList<TrackData>();
             for (VkTrackInfo track: trackInfos) {
-                list.add(new TrackData(track.url.toString(), track.artist, Component.literal(track.title)));
+                list.add(new TrackData(url, track.artist, Component.literal(track.title)));
             }
             return list;
         });

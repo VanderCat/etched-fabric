@@ -34,6 +34,7 @@
   "screen.etched.etching_table.error.cannot_create.missing_label": "Отсутствует ярлык",
   "screen.etched.etching_table.error.invalid_url": "Неправильный URL",
   "sound_source.etched.bandcamp": "Предоставлено Bandcamp",
+  "sound_source.etched.vkontakte": "Предоставленно Вконтакте",
   "sound_source.etched.info": "%s - %s",
   "sound_source.etched.radio": "Радиостанция",
   "sound_source.etched.requesting": "Запрос от %s...",
